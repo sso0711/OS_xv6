@@ -22,6 +22,14 @@ sys_getpid(void)
 }
 
 uint64
+sys_getppid(void)
+{
+  if(myproc()->parent) // 현재 프로세스의 부모가 존재하면
+    return myproc()->parent->pid; // 부모의 process id 리턴
+  return -1; // 부모 프로세스 없는 경우
+}
+
+uint64
 sys_fork(void)
 {
   return fork();
